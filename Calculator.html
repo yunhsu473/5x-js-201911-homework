@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculator</title>
+  <style>
+    .wrapper {
+      width: 400px;
+      margin: 100px auto;
+      padding: 10px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #DDDDDD;
+    }
+
+    #result {
+      width: 400px;
+      height: 56px;
+      margin-bottom: 10px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #CCCCCC;
+      text-align: right;
+      font-family: sans-serif;
+      font-size: 54px;
+      color: #3c3c3c;
+    }
+
+    .row-btn {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .row-btn>button {
+      width: 94px;
+      height: 36px;
+      display: inline-block;
+      margin-top: 6px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #CCCCCC;
+      font-family: sans-serif;
+      font-size: 16px;
+      color: #3c3c3c;
+    }
+
+    .row-btn>button:hover {
+      cursor: pointer;
+      border-color: #AAAAAA;
+    }
+
+    .nums {
+      background: #FFFFFF;
+    }
+
+    #equal {
+      width: 196px;
+      background: #ff8d00;
+      border-style: none;
+    }
+
+    #equal:hover {
+      background: #ea8200;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+    <div id="result">0</div>
+
+    <div class="btn-pad">
+
+      <div class="row-btn">
+        <button id="ac">AC</button>
+        <button class="operator">÷</button>
+      </div>
+
+      <div class="row-btn">
+        <button class="nums">7</button>
+        <button class="nums">8</button>
+        <button class="nums">9</button>
+        <button class="operator">×</button>
+      </div>
+
+      <div class="row-btn">
+        <button class="nums">4</button>
+        <button class="nums">5</button>
+        <button class="nums">6</button>
+        <button class="operator">-</button>
+      </div>
+
+      <div class="row-btn">
+        <button class="nums">1</button>
+        <button class="nums">2</button>
+        <button class="nums">3</button>
+        <button class="operator">+</button>
+      </div>
+
+      <div class="row-btn">
+        <button class="nums">0</button>
+        <button class="nums">.</button>
+        <button id="equal">=</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script>
+    /*
+      試著完成計算機功能，讓它可以做到簡單的四則運算。
+    */
+
+  </script>
+
+</body>
+
+</html>
