@@ -25,10 +25,23 @@
         lottery() 若是未傳入參數則預設印出一組樂透數字。
     */
 
-    var lottery = function () {
+    var lottery = function (n) {
 
+      //產生幾組
+      var times = 0;
+      while (times < n) {
+        //樂透隨機選 6 碼
+        var lotteryNum = [];
+        while (lotteryNum.length < 6) {
+          var num = Math.floor(Math.random() * 49) + 1;
+          if (lotteryNum.indexOf(num) === -1) {
+            lotteryNum.push(num);
+          }
+        }
+        times++;
+        console.log(lotteryNum);
+      }
     }
-
   </script>
 
 
