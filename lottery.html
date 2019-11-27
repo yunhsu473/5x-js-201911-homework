@@ -25,15 +25,10 @@
         lottery() 若是未傳入參數則預設印出一組樂透數字。
     */
 
-    var lottery = function (n) {
+    var lottery = function (n = 1) {
 
       //產生幾組
       var times = 0;
-
-      //如未輸入參數
-      if (n === undefined) {
-        n = 1;
-      }
 
       while (times < n) {
         //樂透隨機選 6 碼
