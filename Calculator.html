@@ -77,28 +77,28 @@
 
       <div class="row-btn">
         <button id="ac">AC</button>
-        <button class="operator">÷</button>
+        <button class="operator" data-op="/">÷</button>
       </div>
 
       <div class="row-btn">
         <button class="nums">7</button>
         <button class="nums">8</button>
         <button class="nums">9</button>
-        <button class="operator">×</button>
+        <button class="operator" data-op="*">×</button>
       </div>
 
       <div class="row-btn">
         <button class="nums">4</button>
         <button class="nums">5</button>
         <button class="nums">6</button>
-        <button class="operator">-</button>
+        <button class="operator" data-op="-">-</button>
       </div>
 
       <div class="row-btn">
         <button class="nums">1</button>
         <button class="nums">2</button>
         <button class="nums">3</button>
-        <button class="operator">+</button>
+        <button class="operator" data-op="+">+</button>
       </div>
 
       <div class="row-btn">
@@ -115,8 +115,112 @@
     /*
       試著完成計算機功能，讓它可以做到簡單的四則運算。
     */
+    var display = ""; //顯示區
+    var calArr = []; //放要計算的數字
+    var opArr = []; //放運算符
 
+    // -----function-----
+    // 當數字被點擊
+    function numClick() {
+      // 取數字
+      var num = $(this).text();
+      display += num;
+
+      if (parseFloat(num) === 0 && (display == '' || display == 0)) {
+        //0 就應該是 0 而不是 00 或 000
+        display = 0;
+      } else if (num.includes(".")) {
+        //小數點只能按一次
+        $(".decimal").attr("disabled", true);
+      } else if (display.length > 13) {
+        // 限制字數不然會破框而出
+        display = display.substring(0, display.length - 1);
+      }
+
+      //畫面顯示
+      $("#result").text(display);
+
+    }
+
+    // 取出數字和運算符
+    function getNum(calArr, opArr) {
+      console.log(calArr, opArr);
+
+      // 取出前後兩值
+      var numA = parseFloat(calArr.shift());
+      var numB = parseFloat(calArr.shift());
+
+      //取出運算子
+      var operator = opArr.shift();
+
+      //丟入計算 fn 得到結果
+      var result = cal(numA, numB, operator);
+      // console.log(result);
+
+      //將算出來的結果當作新的 numA 丟回 calArr 裡
+      calArr.push(result);
+
+      // 畫面顯示結果
+      $("#result").text(result);
+    }
+
+    // 計算後返回結果
+    function cal(numA, numB, operator) {
+      switch (operator) {
+        case "+":
+          return numA + numB;
+        case "-":
+          return numA - numB;
+        case "*":
+          return numA * numB;
+        case "/":
+          return numA / numB;
+      }
+    }
+
+    // 當運算符被點擊
+    function opClick() {
+      //取之後輸入的數字並推到 calArr
+      var num = $("#result").text();
+      calArr.push(num);
+      display = "";
+
+      // 取運算子並記錄
+      var op = $(this).data("op");
+      opArr.push(op);
+
+
+      //要有兩個數才能做運算
+      if (calArr.length > 1) {
+        getNum(calArr, opArr);
+      }
+      // console.log(calArr, opArr);
+      $(".decimal").attr("disabled", false);
+    }
+
+    // 點擊等於鍵
+    function equal() {
+      //跟點擊運算符的意思差不多，只是要把 = 帶的多的數和 undefined 砍掉
+      opClick();
+      opArr.pop();
+      calArr.pop();
+    }
+
+    // 點擊 AC 鍵回到預設值
+    function clear() {
+      display = "";
+      calArr = [];
+      opArr = [];
+      $("#result").text("0");
+      $(".decimal").attr("disabled", false);
+    }
+    // -----event-----
+    $(".nums").on("click", numClick); //點擊數字
+    $(".operator").on("click", opClick); //點擊運算符
+    $("#equal").on("click", equal); //等於鍵
+    $("#ac").on("click", clear); //AC鍵
   </script>
+
 
 </body>
 
