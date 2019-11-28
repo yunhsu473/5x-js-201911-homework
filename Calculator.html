@@ -103,7 +103,7 @@
 
       <div class="row-btn">
         <button class="nums">0</button>
-        <button class="nums">.</button>
+        <button class="nums decimal">.</button>
         <button id="equal">=</button>
       </div>
 
@@ -126,9 +126,14 @@
       var num = $(this).text();
       display += num;
 
+      //各種條件
       if (parseFloat(num) === 0 && (display == '' || display == 0)) {
         //0 就應該是 0 而不是 00 或 000
         display = 0;
+      } else if (display == '.') {
+        //小數點前面為空時要表達 0.
+        console.log('test');
+        display = '0.';
       } else if (num.includes(".")) {
         //小數點只能按一次
         $(".decimal").attr("disabled", true);
@@ -139,7 +144,6 @@
 
       //畫面顯示
       $("#result").text(display);
-
     }
 
     // 取出數字和運算符
@@ -150,15 +154,11 @@
       var numA = parseFloat(calArr.shift());
       var numB = parseFloat(calArr.shift());
 
-      //取出運算子
-      var operator = opArr.shift();
-
-      //丟入計算 fn 得到結果
-      var result = cal(numA, numB, operator);
+      var operator = opArr.shift(); //取出運算子
+      var result = cal(numA, numB, operator); //丟入計算 fn 得到結果
       // console.log(result);
 
-      //將算出來的結果當作新的 numA 丟回 calArr 裡
-      calArr.push(result);
+      calArr.push(result); //將算出來的結果當作新的 numA 丟回 calArr 裡
 
       // 畫面顯示結果
       $("#result").text(result);
