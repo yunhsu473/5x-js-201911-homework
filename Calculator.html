@@ -132,8 +132,8 @@
         display = 0;
       } else if (display == '.') {
         //小數點前面為空時要表達 0.
-        console.log('test');
         display = '0.';
+        $(".decimal").attr("disabled", true);
       } else if (num.includes(".")) {
         //小數點只能按一次
         $(".decimal").attr("disabled", true);
@@ -189,7 +189,6 @@
       var op = $(this).data("op");
       opArr.push(op);
 
-
       //要有兩個數才能做運算
       if (calArr.length > 1) {
         getNum(calArr, opArr);
@@ -214,6 +213,7 @@
       $("#result").text("0");
       $(".decimal").attr("disabled", false);
     }
+
     // -----event-----
     $(".nums").on("click", numClick); //點擊數字
     $(".operator").on("click", opClick); //點擊運算符
